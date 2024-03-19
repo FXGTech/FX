@@ -1,0 +1,371 @@
+/* Footer Styles */
+
+footer {
+  background-color: #f1f3f5;
+  color: #000;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Main Content Styles */
+
+main {
+  padding: 20px 0;
+}
+
+section {
+  padding: 40px 0;
+}
+
+section h2 {
+  margin: 0;
+  font-size: 36px;
+  color: #000;
+}
+
+section p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+/* Product Card Styles */
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-card h3 {
+  margin-top: 10px;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Global Styles */
+
+html,
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(34, 54, 69, .7);
+  font-weight: 500;
+}
+
+a:hover {
+  color: #a11111;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 14px;
+}
+
+/* Navbar Styles */
+
+.navbar {
+  background: white;
+  padding: 2rem;
+}
+
+.navbar .navbar-brand a {
+  padding: 1rem 0;
+  display: block;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Segoe UI', Tahoma;
+  font-size: 1.5rem;
+  color: #5b07f7;
+}
+
+.navbar-toggler {
+  background: rgb(212, 12, 12);
+  border: none;
+  padding: 10px 6px;
+  outline: none;
+}
+
+.navbar-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border: 1px;
+  background: rgb(11, 2, 2);
+}
+
+.navbar-toggle span+span {
+  margin-top: 3px;
+  width: 14px;
+  margin-left: 3px;
+}
+
+.navbar-toggle span+span+span {
+  width: 8px;
+  margin-left: 8px;
+}
+
+.navbar-expand-lg .navbar .nav-link {
+  padding: 1.2rem 0.6rem;
+  font-size: 1rem;
+  position: relative;
+}
+
+.navbar-expand-lg .navbar .nav-link:hover {
+  border-top: 4px solid #a11111;
+}
+
+.navbar-expand-lg .navbar .nav-link.active {
+  border-top: 4px solid #a11111;
+  color: #a11111;
+}
+
+.navbar-nav button {
+  padding: 1rem 0;
+}
+
+.navbar-nav .btn {
+  background: rgb(126, 15, 15);
+  color: #fbfafa;
+  border-radius: 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.navbar-nav .btn:hover {
+  background: rgb(4, 4, 188);
+}
+
+/* Contact Section Styles */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-item {
+  margin-bottom: 10px;
+}
+
+.contact-label {
+  font-weight: bold;
+  color: #0077c8;
+}
+
+.contact-value {
+  color: #000;
+}
+
+/* Chat Popup Styles */
+
+.chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.chat-button button {
+  background-color: #0077c8;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chat-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0797f7;
+}
+
+.chat-body {
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+}
+
+.chat-input input[type="text"],
+.chat-input input[type="file"],
+.chat-input button {
+  margin-right: 5px;
+}
+
+.message {
+  background-color: #0077c8;
+  color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.user-message {
+  font-weight: bold;
+}
+
+/* Additional Styling */
+
+.full-page-image {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .navbar {
+    padding: 1.5rem 1rem;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-toggler {
+    padding: 6px 4px;
+  }
+
+  .navbar-toggle span {
+    width: 18px;
+    height: 2px;
+  }
+
+  .navbar-toggle span+span {
+    margin-top: 2px;
+    width: 12px;
+    margin-left: 2px;
+  }
+
+  .navbar-toggle span+span+span {
+    width: 6px;
+    margin-left: 6px;
+  }
+
+  .navbar-expand-lg .navbar .nav-link {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .chat-button {
+    bottom: 70px;
+    right: 10px;
+  }
+
+  .chat-popup {
+    width: 250px;
+    height: 350px;
+  }
+}
+@media (max-width: 767px) {
+  .home-image {
+    width: 80%;
+  }
+}
+@media (max-width: 320px) {
+  .home-image {
+    width: 280px;
+  }
+}
+
+@media (max-width: 375px) {
+  .home-image {
+    width: 330px;
+  }
+}
