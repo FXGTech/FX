@@ -1,319 +1,473 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="styles.css">
-    <script src="fx.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuxiang Technology Pte Ltd – Engineering Excellence Since 2008</title>
+  <meta name="description" content="Fuxiang Technology specializes in cost-competitive manufacturing of high-quality custom hardware parts for vacuum systems, PVD, and CVD equipment.">
   
-    <script src="js/bootstrap.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
+  <!-- Inline CSS -->
+  <style>
+    /* Root Variables */
+    :root {
+      --primary-color: #5b07f7;
+      --accent-color: #a11111;
+      --text-color: #333;
+      --bg-color: #ffffff;
+      --footer-bg: #f1f3f5;
+      --nav-padding: 20px;
+    }
+
+    /* Global Reset & Base Styles */
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+    a {
+      text-decoration: none;
+      color: rgba(34, 54, 69, 0.7);
+      transition: color 0.3s ease;
+    }
+    a:hover { color: var(--accent-color); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
+    /* Header & Navbar */
+    header {
+      background-color: var(--bg-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: padding 0.3s ease;
+    }
+    header.navbar-scrolled { padding: 5px 20px; }
+    
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+    .logo img {
+      max-width: 80px;
+      height: auto;
+      margin-right: 10px;
+      transition: max-width 0.3s ease;
+    }
+    header.navbar-scrolled .logo img { max-width: 60px; }
+    
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-nav .nav-item { margin-left: 20px; }
+    .navbar-nav .nav-link {
+      padding: 10px 5px;
+      font-size: 1rem;
+      color: rgba(34,54,69,0.7);
+      transition: color 0.3s ease, border-top 0.3s ease;
+      border-top: 4px solid transparent;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      border-top-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    .navbar-toggler {
+      background: var(--accent-color);
+      border: none;
+      padding: 10px 6px;
+      outline: none;
+      cursor: pointer;
+      color: #fff;
+      display: none; /* will show on mobile via media queries */
+    }
+    
+    /* Main Sections */
+    main { padding: 20px 0; }
+    section { padding: 60px 0; }
+    section h2 { font-size: 36px; color: var(--text-color); margin-bottom: 20px; }
+    section p { font-size: 16px; line-height: 1.5; color: var(--text-color); }
+    
+    /* Product Card */
+    .card { box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: none; margin-bottom: 20px; }
+    .card img { border-top-left-radius: 4px; border-top-right-radius: 4px; }
+    
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+    footer p { margin: 0; }
+    
+    /* Chat Popup */
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1100;
+    }
+    .chat-button button {
+      background-color: #0077c8;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .chat-popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: var(--bg-color);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      display: none;
+      z-index: 1099;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      font-family: Arial, sans-serif;
+    }
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header h3 { margin: 0; font-size: 18px; color: #0797f7; }
+    .chat-body {
+      height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .chat-input {
+      display: flex;
+      align-items: center;
+    }
+    .chat-input input[type="text"],
+    .chat-input input[type="file"],
+    .chat-input button { margin-right: 5px; }
+    .message {
+      background-color: #0077c8;
+      color: #fff;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+    .user-message { font-weight: bold; }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .navbar-nav { flex-direction: column; width: 100%; }
+      .navbar-nav .nav-item { margin-left: 0; width: 100%; }
+      .navbar-toggler { display: block; margin-top: 10px; }
+      .chat-popup { width: 250px; height: 350px; }
+    }
+  </style>
 </head>
 <body class="home">
-
-<header class="header">
-    <nav class="navbar navbar-expand-lg header-nav fixed top">
-        <div class="container-fluid">
-          <a class="logo" href="#"><img src="logo.png" alt="Company Logo"></a>
-          <a class="navbar-brand" href="#">Fuxiang Technology Pte Ltd</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#Home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About Us</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#product">Products</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#services">Services</a>
-              </li>
-
-                 <li class="nav-item">
-                <a class="nav-link" href="#code-of-conduct">Code of Conduct</a>
-            </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn nav-link" href="#contact">Get a quote</a>
-                </li>
-            </ul>
-            
+  <!-- Header & Navigation -->
+  <header id="mainHeader">
+    <nav class="navbar navbar-expand-lg" aria-label="Main Navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand logo" href="#">
+          <img src="logo.png" alt="Fuxiang Technology Logo">
+          Fuxiang Technology Pte Ltd
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" 
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">&#9776;</span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link active" href="#Home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#product">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#code-of-conduct">Code of Conduct</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="btn btn-outline-primary" href="#contact">Get a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Home Section -->
+    <section id="Home" class="container text-center">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2>Manufacturing Excellence</h2>
+          <h3>Cost-Competitive Machine Parts</h3>
+          <p>High-quality custom parts and precision components designed to enhance performance in advanced manufacturing environments.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="Home.jpg" alt="Manufacturing Process" class="img-fluid" loading="lazy">
+        </div>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="container text-center" style="border-top: 200px solid #fafafa;">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>About Us</h2>
+          <p>
+            Since our establishment in 2008, we have leveraged advanced 3D CAD technology to manufacture high-quality components for PVD and CVD equipment. Our state-of-the-art solutions are designed to enhance performance and efficiency while remaining cost-effective. In addition to manufacturing, we provide servicing for various equipment across industries, ensuring reliability and optimal operation for our clients both locally and internationally.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section id="product" class="container py-5">
+      <h2 class="text-center">Our Products</h2>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="tungsten_filament.jpg" alt="Tungsten Filament" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h4 class="card-title">Tungsten Filament</h4>
+              <p class="card-text">Engineered for durability and high-temperature performance in advanced vacuum chamber applications.</p>
+            </div>
           </div>
         </div>
-      </nav>
-    </header>
-
-
-
-    
-    
-    <main>
-    
-        <section id="Home" class="container">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <p></p>
-                            <p></p>
-                            <p></p>
-                            <h2>Manufacturing</h2>
-                            <p></p>
-                            <p></p>
-                        </div>
-                        <div class="row">
-                            <h2>Cost competitive machine parts</h2>
-                        </div>
-                        <p></p>
-                        <p></p>
-                        <div class="row">
-                            <p>High-quality custom parts and PVD sputtering components in a vacuum-sealed chamber</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <img src="Home.jpg" alt="Banner Image" class="img-fluid">
-                        </div>
-
-                        
-                        <p></p>
-                    </div>
-                </div>
+        <!-- Product 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="shield.jpg" alt="Shield" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h4 class="card-title">Shield</h4>
+              <p class="card-text">Precision shields crafted to safeguard sensitive components and ensure process stability.</p>
             </div>
-        </section>
-        
-        <section id="about" class="container" style="border-top: 200px solid #fafafa;">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <h4>A Singapore engineering firm</h4>
-                        </div>
-                        <div class="row">
-                            <h2>Established Since 2008</h2>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <p>Singapore-based company that specializes in the re-engineering and manufacturing of hardware parts for the vacuum-sealed chamber process.</p>
-                        <p></p>
-                        <p></p>
-                        <p>We offer expertise in PVD sputtering deposition and use the latest 3D CAD technology to design and fabricate custom equipment parts for various industries. As an engineering firm, we are dedicated to providing cost-competitive manufacturing and strong engineering capabilities to our customers. Our goal is to be a valued partner in the industry by delivering innovative and high-quality hardware solutions.</p>
-                        <p></p>
-                        <p></p>
-                        <p>As an engineering firm, we are dedicated to providing cost-competitive manufacturing and strong engineering capabilities to our customers. Our goal is to be a valued partner in the industry by delivering innovative and high-quality hardware solutions.</p>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="vacuum_valve_gate.jpg" alt="Vacuum Valve Gate" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h4 class="card-title">Vacuum Valve Gate</h4>
+              <p class="card-text">Control material flow with our precision-engineered valves, designed for reliability in industrial environments.</p>
             </div>
-        </section>
-        
-        <section id="product" class="container py-5">
-            <h1 class="text-center">Our Products</h1>
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="card mb-4">
-                        <img src="tungsten_filament.jpg" alt="Tungsten Filament" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-title">Tungsten Filament</h3>
-                            <p class="card-text">We offer high-quality tungsten filaments for various applications in vacuum chambers. Our filaments are durable and designed to withstand high temperatures.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card mb-4">
-                        <img src="shield.jpg" alt="Shield" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-title">Shield</h3>
-                            <p class="card-text">Our shields provide protection and containment for delicate components within vacuum chambers. They are made from durable materials to ensure optimal performance and safety.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card mb-4">
-                        <img src="vacuum_valve_gate.jpg" alt="Vacuum Valve Gate" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-title">Vacuum Valve Gate</h3>
-                            <p class="card-text">Our vacuum valve gates are designed to control the flow of materials in vacuum chambers. They provide precise control and reliability for various industrial processes.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card mb-4">
-                        <img src="Other custom parts.jpg" alt="Other custom parts" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-title">Other Custom Parts</h3>
-                            <p class="card-text">We offer a wide range of high-quality hardware parts for vacuum chambers in the semiconductor industry. Our product line includes custom components, motors, automation equipment, and other essential parts necessary for maintaining and optimizing processes within vacuum systems. With our expertise and commitment to excellence, we deliver reliable solutions tailored to meet your specific needs.</p>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <img src="Other custom parts.jpg" alt="Custom Parts" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h4 class="card-title">Other Custom Parts</h4>
+              <p class="card-text">Tailor-made solutions—from motors to automation equipment—that meet the unique demands of your operation.</p>
             </div>
-        </section>
-        
-        <section id="services" class="container py-5">
-            <h2 class="text-center">Our Services</h2>
-            <ul>
-                <li>Custom design and fabrication of vacuum chamber components</li>
-                <li>Refurbishment and replenishment of high-quality components for PVD system.</li>
-                <li>Technical consultancy for optimizing vacuum processes</li>
-                <li>Supply of high-quality vacuum-related parts and equipment</li>
-            </ul>
-        </section>
- <!-- Responsible Business Code of Conduct Section -->
-     <section id="code-of-conduct" class="container py-5">
-        <h1 class="text-center">Responsible Business Code of Conduct</h1>
-        
-        <h2>Our Commitment</h2>
-        <p>At Fuxiang Technology, we uphold high ethical standards and are committed to transparency, integrity, and sustainability in all operations.</p>
-
-        <h2>Ethical Practices</h2>
-        <p><strong>Integrity:</strong> We conduct business honestly and fairly, avoiding conflicts of interest and adhering to anti-corruption laws.</p>
-        <p><strong>Labor Standards:</strong> We ensure fair employment practices, respect human rights, and comply with MOM health and safety regulations.</p>
-
-        <h2>Environmental Responsibility</h2>
-        <p><strong>Sustainability:</strong> We are committed to reducing our environmental footprint and improving energy efficiency, aligned with EENP standards.</p>
-
-        <h2>Supply Chain</h2>
-        <p><strong>Ethical Sourcing:</strong> We expect our suppliers to meet our ethical and environmental standards, ensuring responsible sourcing practices.</p>
-
-        <h2>Community Engagement</h2>
-        <p><strong>Social Responsibility:</strong> We actively support local communities through volunteer work and charitable initiatives.</p>
-
-        <h2>Contact Us</h2>
-        <p>For more information or to report concerns, please contact:</p>
-        <p><strong>Fuxiang Technology Pte Ltd</strong><br>
-        BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761<br>
-    
-        +65 6483 1586</p>
-        <h2>Download Our Code of Conduct</h2>
-        <p>For a detailed view of our Responsible Business Code of Conduct, download the PDF version:</p>
-        <a href="Business Code of Conduct.pdf" download="Code_of_Conduct_Fuxiang_Technology.pdf" class="btn btn-primary">Download PDF</a>
+          </div>
+        </div>
+      </div>
     </section>
-
-
-
-
-
-
-        
-        
-        <section id="contact" class="container py-5">
-            <h5 class="text-center">Contact Us</h5>
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="contact-item">
-                        <h4>Fuxiang Technology Pte Ltd</h4>
-                    </p>
-                    <p class="contact-item">
-                        <span class="contact-label">Address:</span>
-                        <span class="contact-value">BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</span>
-                    </p>
-                    <p class="contact-item">
-                        <span class="contact-label">Phone:</span>
-                        <span class="contact-value">+65 6483 1586</span>
-                    </p>
-                    <p class="contact-item">
-                        <span class="contact-label">Business Hours:</span>
-                        <span class="contact-value">Mon-Fri: 8:30 AM - 5:30 PM<br>
-                            Sat: 8:30 AM - 12:00 PM<br>
-                            Sun: Closed</span>
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <img src="location.jpg" alt="Location Image" class="img-fluid">
-                </div>
-            </div>
-        </section>
-        
-    </main>
     
-    <!-- Chat button -->
-    <div class="fixed-bottom chat-button">
-        <button class="btn btn-primary" onclick="toggleChat()">Chat Now</button>
-    </div>
-
-    <!-- Chat popup -->
-
+    <!-- Services Section -->
+    <section id="services" class="container py-5">
+      <h2 class="text-center">Our Services</h2>
+      <ul class="list-unstyled text-center">
+        <li>Custom design and fabrication of vacuum chamber components</li>
+        <li>Refurbishment and replenishment of high-quality PVD/CVD system components</li>
+        <li>Technical consultancy for optimizing equipment performance</li>
+        <li>Servicing and support for equipment across diverse industries</li>
+      </ul>
+    </section>
     
-    <!-- Chat popup -->
-<div class="fixed-bottom chat-popup" id="chatPopup">
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h3 class="card-title mb-0">Chat with us</h3>
-            <button class="btn-close btn-close-white" onclick="toggleChat()"></button>
+    <!-- Code of Conduct Section -->
+    <section id="code-of-conduct" class="container py-5">
+      <h2 class="text-center">Responsible Business Code of Conduct</h2>
+      <p>At Fuxiang Technology, ethical practices and environmental responsibility are at the core of our operations. We adhere to strict standards in transparency, integrity, labor, and sustainable sourcing to ensure that our business practices support both our clients and our communities.</p>
+      <a href="Business Code of Conduct.pdf" download="Code_of_Conduct_Fuxiang_Technology.pdf" class="btn btn-primary">Download Full Code of Conduct</a>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="container py-5">
+      <h2 class="text-center">Contact Us</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Fuxiang Technology Pte Ltd</h4>
+          <p><strong>Address:</strong> BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</p>
+          <p><strong>Phone:</strong> <a href="tel:+6564831586">+65 6483 1586</a></p>
+          <p><strong>Email:</strong> <a href="mailto:sales@fuxiang.com.sg">sales@fuxiang.com.sg</a></p>
+          <p><strong>Business Hours:</strong><br> Mon-Fri: 8:30 AM - 5:30 PM<br> Sat: 8:30 AM - 12:00 PM<br> Sun: Closed</p>
         </div>
-        <div class="card-body" id="chatBody">
-            <!-- Chat messages here -->
+        <div class="col-md-6">
+          <img src="location.jpg" alt="Our Location" class="img-fluid" loading="lazy">
         </div>
-        <div class="card-footer">
-            <div class="input-group">
-                <input type="text" id="messageInput" class="form-control" placeholder="Message" style="font-size: 14px;">
-                <input type="email" id="emailInput" class="form-control" placeholder="Email" required style="font-size: 14px;">
-                <input type="file" id="fileInput" class="form-control">
-                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div>
-        </div>
-    </div>
+      </div>
+    </section>
+  </main>
   
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>Contact Us</h3>
-                    <p>Email: <a href="mailto:sales@fuxiang.com.sg">sales@fuxiang.com.sg</a></p>
-                    <p>Phone: <a href="tel:+6564831586">+65 6483 1586</a></p>
-                    <p>Address: <a href="https://maps.google.com/maps?q=BLK20+Ang+Mo+Kio+Industrial+Park+2A%2C+AMK+Techlink+%2303-13%2C+Singapore+567761" target="_blank">BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Capabilities</h3>
-                    <ul>
-                        <li>CNC Machining</li>
-                        <li>Bead blasting</li>
-                        <li>Design</li>
-                        <li>More Upon Request</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#Home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#product">Products</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#code-of-conduct">Code of Conduct</a></li>
-                    </ul>
-                </div>
-            </div>
+  <!-- Chat Button & Popup -->
+  <div class="chat-button">
+    <button class="btn btn-primary" id="chatToggleBtn">Chat Now</button>
+  </div>
+  <div class="chat-popup" id="chatPopup">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h3 class="card-title mb-0">Chat with us</h3>
+        <button class="btn btn-close btn-close-white" id="chatCloseBtn">&times;</button>
+      </div>
+      <div class="card-body" id="chatBody">
+        <!-- Chat messages will appear here -->
+      </div>
+      <div class="card-footer">
+        <div class="input-group">
+          <input type="text" id="messageInput" class="form-control" placeholder="Message">
+          <input type="email" id="emailInput" class="form-control" placeholder="Email" required>
+          <input type="file" id="fileInput" class="form-control">
+          <button class="btn btn-primary" id="sendMessageBtn">Send</button>
         </div>
-        <div class="footer-icons">
-            <a href="https://www.facebook.com/fuxiangtechnology/"><img src="facebook.png" alt="Facebook" width="24" height="24"></a>
-            <a href="https://www.linkedin.com/company/69036478"><img src="linkedin.png" alt="LinkedIn" width="24" height="24"></a>
-            <a href="mailto:sales@fuxiang.com.sg"><img src="email.png" alt="Email" width="24" height="24"></a>
-            <p>&copy; 2023 Fuxiang Technology Pte Ltd. All rights reserved.</p>
-      
-        
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <p>Email: <a href="mailto:sales@fuxiang.com.sg">sales@fuxiang.com.sg</a></p>
+          <p>Phone: <a href="tel:+6564831586">+65 6483 1586</a></p>
+          <p>Address: <a href="https://maps.google.com/?q=BLK20+Ang+Mo+Kio+Industrial+Park+2A,+AMK+Techlink+%2303-13,+Singapore+567761" target="_blank">BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</a></p>
         </div>
-    </footer>
-    
+        <div class="col-md-4">
+          <h4>Capabilities</h4>
+          <ul class="list-unstyled">
+            <li>CNC Machining</li>
+            <li>Bead Blasting</li>
+            <li>Design & Engineering</li>
+            <li>Custom Solutions</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Company</h4>
+          <ul class="list-unstyled">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#product">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#code-of-conduct">Code of Conduct</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-3">
+        <a href="https://www.facebook.com/fuxiangtechnology/"><img src="facebook.png" alt="Facebook" width="24" height="24"></a>
+        <a href="https://www.linkedin.com/company/69036478"><img src="linkedin.png" alt="LinkedIn" width="24" height="24"></a>
+        <a href="mailto:sales@fuxiang.com.sg"><img src="email.png" alt="Email" width="24" height="24"></a>
+        <p class="mt-2">&copy; 2008 Fuxiang Technology Pte Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- jQuery and Bootstrap JS (via CDN) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Inline JavaScript -->
+  <script>
+    'use strict';
+    // Shrink header on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 50) {
+        header.classList.add('navbar-scrolled');
+      } else {
+        header.classList.remove('navbar-scrolled');
+      }
+    });
 
+    // Chat functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatToggleBtn = document.getElementById('chatToggleBtn');
+      const chatCloseBtn = document.getElementById('chatCloseBtn');
+      const sendMessageBtn = document.getElementById('sendMessageBtn');
+      const fileInput = document.getElementById('fileInput');
 
-    
+      chatToggleBtn.addEventListener('click', toggleChat);
+      chatCloseBtn.addEventListener('click', toggleChat);
+      sendMessageBtn.addEventListener('click', sendMessage);
+      fileInput.addEventListener('change', handleFileUpload);
+    });
+
+    // Toggle chat popup visibility
+    const toggleChat = () => {
+      const chatPopup = document.getElementById('chatPopup');
+      if (chatPopup) {
+        chatPopup.style.display = (chatPopup.style.display === 'none' || chatPopup.style.display === '') ? 'block' : 'none';
+      }
+    };
+
+    // Send a chat message
+    const sendMessage = () => {
+      const emailInput = document.getElementById('emailInput');
+      const messageInput = document.getElementById('messageInput');
+      if (!emailInput.checkValidity()) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      const message = messageInput.value.trim();
+      if (!message) {
+        alert('Please enter a message.');
+        return;
+      }
+      messageInput.value = '';
+      const chatBody = document.getElementById('chatBody');
+      if (chatBody) {
+        const newMessage = document.createElement('div');
+        newMessage.className = 'message';
+        newMessage.innerHTML = `<span class="user-message">You: ${message}</span>`;
+        chatBody.appendChild(newMessage);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    };
+
+    // Handle file upload (for future use)
+    const handleFileUpload = () => {
+      const fileInput = document.getElementById('fileInput');
+      if (fileInput && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        console.log('Uploaded file:', file);
+      }
+    };
+
+    // Log user agent for debugging/analytics
+    console.log('User Agent:', navigator.userAgent.toLowerCase());
+  </script>
 </body>
 </html>
