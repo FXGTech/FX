@@ -1,34 +1,330 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Fuxiang Technology Pte Ltd — Maintenance</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuxiang Technology Pte Ltd – Engineering Excellence Since 2008</title>
+  <meta name="description" content="High-quality custom hardware parts for vacuum, PVD/CVD equipment and automation solutions.">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
+    :root {
+      --primary-color: #5b07f7;
+      --accent-color: #a11111;
+      --text-color: #333;
+      --bg-color: #ffffff;
+      --footer-bg: #f1f3f5;
+    }
+
+    * { box-sizing: border-box; }
+    body, html { margin:0; padding:0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+    a { text-decoration: none; color: rgba(34,54,69,0.7); transition: color 0.3s ease; }
+    a:hover { color: var(--accent-color); }
+
+    header {
+      background-color: var(--bg-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: padding 0.3s ease, background-color 0.3s ease;
+    }
+    header.navbar-scrolled { padding: 5px 20px; }
+
+    .navbar-brand { display: flex; align-items: center; font-size: 1.5rem; color: var(--primary-color); }
+    .logo img { max-width: 80px; margin-right: 10px; transition: max-width 0.3s ease; }
+    header.navbar-scrolled .logo img { max-width: 60px; }
+
+    .navbar-nav { display: flex; list-style: none; margin: 0; padding: 0; }
+    .navbar-nav .nav-item { margin-left: 20px; }
+    .navbar-nav .nav-link { padding: 10px 5px; font-size: 1rem; border-top: 4px solid transparent; transition: 0.3s; }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { border-top-color: var(--accent-color); color: var(--accent-color); }
+    .navbar-toggler { background: var(--accent-color); border: none; padding: 10px 6px; color: #fff; cursor: pointer; display: none; }
+
+    main { padding: 0; }
+
+    /* Hero */
+    #hero {
+      position: relative;
+      height: 90vh;
+      background: url('Home.jpg') center center / cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #f1f5f9;
+      color: #fff;
       text-align: center;
-      padding: 20px;
+      overflow: hidden;
     }
-    h1 { font-size: 1.6em; margin-bottom: 0.4em; }
-    p  { margin: 0.4em 0; color: #94a3b8; }
+    #hero::before {
+      content:'';
+      position:absolute;top:0;left:0;right:0;bottom:0;
+      background: rgba(0,0,0,0.45);
+    }
+    #hero .hero-content {
+      position: relative;
+      z-index:2;
+      max-width:800px;
+      animation: fadeInUp 1s ease forwards;
+    }
+    #hero h1 { font-size:3rem; margin-bottom:15px; color:#fff; }
+    #hero p { font-size:1.2rem; margin-bottom:25px; color:#fff; }
+    #hero .btn-cta {
+      padding: 10px 25px;
+      font-size:1rem;
+      background: var(--primary-color);
+      color:#fff;
+      border:none;
+      transition: 0.3s;
+    }
+    #hero .btn-cta:hover { background: var(--accent-color); }
+
+    /* Products */
+    #product { padding: 80px 20px; background: #fafafa; }
+    #product h2 { margin-bottom: 50px; font-size:2.5rem; text-align:center; }
+    .product-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border-radius:8px;
+      background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transform: translateY(50px);
+      opacity:0;
+      transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+    }
+    .product-card img { width:100%; display:block; transition: transform 0.5s ease; }
+    .product-card:hover img { transform: scale(1.05); }
+    .product-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: rgba(0,0,0,0.75); /* semi-transparent overlay */
+  color: #fff;
+  opacity: 0;                 /* hidden initially */
+  transform: translateY(100%); /* slide up from bottom */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover .product-info {
+  opacity: 1;                 /* show on hover */
+  transform: translateY(0);   /* slide into place */
+}
+
+    .product-info h4 { font-size:1rem; margin-bottom:5px; color:#fff; }
+    .product-info p { font-size:0.85rem; line-height:1.3; margin:0; color:#fff; }
+
+    /* Animations */
+    @keyframes fadeInUp { 0%{opacity:0;transform:translateY(50px);}100%{opacity:1;transform:translateY(0);} }
+
+    section { padding:60px 20px; }
+    section h2 { font-size:36px; margin-bottom:20px; color:var(--text-color); }
+    section p, section ul { font-size:16px; line-height:1.5; color:var(--text-color); }
+    ul.list-unstyled li { margin-bottom:10px; }
+
+    footer { background-color: var(--footer-bg); color: var(--text-color); padding: 30px 20px; font-size:14px; }
+    footer h4 { margin-bottom:10px; }
+    footer ul li { margin-bottom:5px; }
+    footer a { color: var(--text-color); }
+    footer a:hover { color: var(--accent-color); }
+
+    @media(max-width:768px) {
+      .navbar-nav { flex-direction: column; }
+      .navbar-nav .nav-item { margin-left:0; margin-bottom:10px; }
+      .navbar-toggler { display:block; }
+      #hero h1 { font-size:2rem; }
+      #hero p { font-size:1rem; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Fuxiang Technology Pte Ltd</h1>
-    <p>Our website is currently down for scheduled maintenance.</p>
-    <p>We’ll be back online shortly. Thank you for your patience!</p>
-    <p>Contact us: 
-      <a href="mailto:sales@fuxiang.com.sg" style="color:#38bdf8">sales@fuxiang.com.sg</a>
-    </p>
-  </main>
+
+  <!-- Header -->
+  <header id="mainHeader">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand logo" href="#hero">
+          <img src="logo.png" alt="Fuxiang Technology Logo">
+          Fuxiang Technology Pte Ltd
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+          <span class="navbar-toggler-icon">&#9776;</span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#product">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#code-of-conduct">Code of Conduct</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="btn btn-outline-primary" href="#contact">Get a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Precision Engineering for Semiconductor & Research Labs</h1>
+      <p>High-quality custom hardware parts for vacuum, PVD/CVD equipment and automation solutions.</p>
+      <a href="#contact" class="btn btn-cta">Request a Quote</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container text-center">
+    <h2>About Us</h2>
+    <p>Since 2008, Fuxiang Technology has leveraged advanced 3D CAD technology to manufacture high-quality components for PVD, CVD, and vacuum automation equipment. We work with semiconductor labs, research institutes such as ASTAR and SUTD, and provide cost-effective solutions across high-tech applications.</p>
+    <p>Our team specializes in high-temperature Viton-based designs, ensuring reliability in automation and research environments.</p>
+    <img src="Fuxiang Technology-9K-SAC Logo.png" alt="ISO 9001:2015 Certified" width="150">
+  </section>
+
+  <!-- Products Section -->
+  <section id="product">
+    <h2>Our Products</h2>
+    <div class="product-grid container">
+      <div class="product-card">
+        <img src="tungsten_filament.jpg" alt="Tungsten Filament">
+        <div class="product-info">
+          <h4>Tungsten Filament</h4>
+          <p>Durable high-temp filaments for advanced vacuum chamber applications.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="shield.jpg" alt="Shield">
+        <div class="product-info">
+          <h4>Shield</h4>
+          <p>High-temperature shields for sputtering processes, trapping impurities for improved results.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="vacuum_blade.jpg" alt="Isolation Gate Blade">
+        <div class="product-info">
+          <h4>Isolation Gate Blade</h4>
+          <p>Custom-designed blades for vacuum applications with high reliability in automation and research equipment.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="Other custom parts.jpg" alt="Custom Parts">
+        <div class="product-info">
+          <h4>Other Custom Parts</h4>
+          <p>Tailor-made solutions for automation, motors, and research applications to meet diverse industrial needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="container text-center">
+    <h2>Our Services</h2>
+    <ul class="list-unstyled">
+      <li>Custom design and fabrication of vacuum chamber components</li>
+      <li>Refurbishment and replenishment of PVD/CVD system components</li>
+      <li>Technical consultancy for equipment optimization</li>
+      <li>Servicing and support for research and semiconductor industries</li>
+    </ul>
+  </section>
+
+  <!-- Code of Conduct Section -->
+  <section id="code-of-conduct" class="container text-center">
+    <h2>Responsible Business Code of Conduct</h2>
+    <p>Fuxiang Technology operates with high ethical standards, adhering to transparency, integrity, labor, and sustainable sourcing practices.</p>
+    <a href="Business Code of Conduct.pdf" download="Code_of_Conduct_Fuxiang_Technology.pdf" class="btn btn-primary">Download Full Code of Conduct</a>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container">
+    <h2 class="text-center">Contact Us</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Fuxiang Technology Pte Ltd</h4>
+        <p><strong>Address:</strong> BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</p>
+        <p><strong>Phone:</strong> <a href="tel:+6564831586">+65 6483 1586</a></p>
+        <p><strong>Email:</strong> <a href="mailto:sales@fuxiang.com.sg">sales@fuxiang.com.sg</a></p>
+        <p><strong>Business Hours:</strong><br>Mon-Fri: 8:30 AM - 5:30 PM<br>Sat: 8:30 AM - 12:00 PM<br>Sun: Closed</p>
+      </div>
+      <div class="col-md-6">
+        <img src="location.jpg" alt="Our Location" class="img-fluid" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <p>Email: <a href="mailto:sales@fuxiang.com.sg">sales@fuxiang.com.sg</a></p>
+          <p>Phone: <a href="tel:+6564831586">+65 6483 1586</a></p>
+          <p>Address: <a href="https://maps.google.com/?q=BLK20+Ang+Mo+Kio+Industrial+Park+2A,+AMK+Techlink+%2303-13,+Singapore+567761" target="_blank">BLK20 Ang Mo Kio Industrial Park 2A, AMK Techlink #03-13, Singapore 567761</a></p>
+        </div>
+        <div class="col-md-4">
+          <h4>Capabilities</h4>
+          <ul class="list-unstyled">
+            <li>CNC Machining</li>
+            <li>Bead Blasting</li>
+            <li>Design & Engineering</li>
+            <li>Custom Solutions</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Company</h4>
+          <ul class="list-unstyled">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#product">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#code-of-conduct">Code of Conduct</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-3 d-flex justify-content-center align-items-center gap-3">
+        <a href="https://www.facebook.com/fuxiangtechnology/"><img src="facebook.png" alt="Facebook" width="24" height="24"></a>
+        <a href="https://www.linkedin.com/company/69036478"><img src="linkedin.png" alt="LinkedIn" width="24" height="24"></a>
+        <a href="mailto:sales@fuxiang.com.sg"><img src="email.png" alt="Email" width="24" height="24"></a>
+        <img src="Fuxiang Technology-9K-SAC Logo.png" alt="ISO 9001:2015" width="50">
+      </div>
+      <p class="text-center mt-2">&copy; 2008 Fuxiang Technology Pte Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    'use strict';
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 50) { header.classList.add('navbar-scrolled'); }
+      else { header.classList.remove('navbar-scrolled'); }
+
+      // Animate product cards
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+          card.style.transform = 'translateY(0)';
+          card.style.opacity = 1;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
